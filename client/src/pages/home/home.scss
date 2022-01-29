@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .title {
+    color: coral;
+    font-weight: bold;
+  }
+
+  .productWrapper {
+    width: 250px;
+    border: 1px solid black;
+    padding: 10px;
+
+    .product {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+
+      .productTitle {
+        color: black;
+      }
+
+      img {
+        height: 150px;
+        width: 100%;
+      }
+
+      .desc {
+        color: rgb(78, 69, 69);
+      }
+
+      .price {
+        font-weight: bold;
+        padding: 10px;
+      }
+
+      .productAdd {
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        background-color: cyan;
+        color: crimson;
+        font-weight: bold;
+      }
+    }
+  }
+}
