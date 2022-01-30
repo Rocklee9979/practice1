@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './home.scss';
 import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
 
 export default function Home() {
 
+    const [stripeToken, setStripeToken] = useState(null);
+        
+    const handleClick = (token) => {
+        setStripeToken(token);
+    }
+
     
 
-    const handleClick = (token) => {
-        console.log(token);
-    }
+    useEffect(() => {
+        const makeRequest = async () => {
+            try {
+                
+                const response = await axios.post(
+                    'http://localhost:4000/cart/payment', {
+                        tokenId: stripeToken.id,
+                        amount: 1000, 
+                    }
+                );
+                console.log(response.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        makeRequest();
+        
+    }, [stripeToken]);
+
     return (
         <div className='container'>
             <h1 className="title">Practicing React Stripe API</h1>
@@ -29,7 +52,7 @@ export default function Home() {
                         token={ handleClick }
                         currency={ 'AUD'}
                     >
-                        Buy Now
+                        <button>Buy Now</button>
                     </StripeCheckout>
                 </div>
             </div>
